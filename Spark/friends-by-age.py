@@ -19,8 +19,8 @@ def parseLine(line):
 #We'll look at an exa
 lines = sc.textFile("C:/Users/eduardo/Desktop/SparkCourse/Spark/fakefriends.csv")
 rdd = lines.map(parseLine)
-totalsByAge = rdd.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
+totalsByAge = rdd.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1])) #se agarra el valor
 averagesByAge = totalsByAge.mapValues(lambda x: x[0] / x[1])
-results = averagesByAge.collect()
+results = totalsByAge.collect()
 for result in results:
     print(result)
